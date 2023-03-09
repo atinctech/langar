@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script>
+      function detectUserLanguage() {
+        const userLang = navigator.language || navigator.userLanguage;
+        // navigator.language gives the user's preferred language as a string, e.g. "en-US"
+        // navigator.userLanguage is deprecated but still supported in some browsers
+
+        // extract the two-letter language code from the string, e.g. "en"
+        const languageCode = userLang.slice(0, 2);
+
+        return languageCode;
+      }
+
+      const imageSources = {
+        "nptype": {
+          "en": "assets/nptype-en.png",
+          "fr": "assets/nptype-fr.png",
+          "es": "assets/nptype-es.png",
+          "ru": "assets/nptype-ru.png",
+          "ar": "assets/nptype-ar.png",
+          "pt": "assets/nptype-pt.png",
+          "it": "assets/nptype-it.png",
+          "tr": "assets/nptype-tr.png",
+          "de": "assets/nptype-de.png",
+          "nl": "assets/nptype-nl.png",
+          "default": "assets/nptype-en.png"
+        },
+        "nsetype": {
+          "en": "assets/nsetype-en.png",
+          "fr": "assets/nsetype-fr.png",
+          "es": "assets/nsetype-es.png",
+          "ru": "assets/nsetype-ru.png",
+          "ar": "assets/nsetype-ar.png",
+          "pt": "assets/nsetype-pt.png",
+          "it": "assets/nsetype-it.png",
+          "tr": "assets/nsetype-tr.png",
+          "de": "assets/nsetype-de.png",
+          "nl": "assets/nsetype-nl.png",
+          "default": "assets/nsetype-en.png"
+        },
+        "ndnvtype": {
+          "en": "assets/ndnvtype-en.png",
+          "fr": "assets/ndnvtype-fr.png",
+          "es": "assets/ndnvtype-es.png",
+          "ru": "assets/ndnvtype-ru.png",
+          "ar": "assets/ndnvtype-ar.png",
+          "pt": "assets/ndnvtype-pt.png",
+          "it": "assets/ndnvtype-it.png",
+          "tr": "assets/ndnvtype-tr.png",
+          "de": "assets/ndnvtype-de.png",
+          "nl": "assets/ndnvtype-nl.png",
+          "default": "assets/ndnvtype-en.png"
+        },
+        "netype": {
+          "en": "assets/netype-en.png",
+          "fr": "assets/netype-fr.png",
+          "es": "assets/netype-es.png",
+          "ru": "assets/netype-ru.png",
+          "ar": "assets/netype-ar.png",
+          "pt": "assets/netype-pt.png",
+          "it": "assets/netype-it.png",
+          "tr": "assets/netype-tr.png",
+          "de": "assets/netype-de.png",
+          "nl": "assets/netype-nl.png",
+          "default": "assets/netype-en.png"
+        },
+        "nretype": {
+          "en": "assets/nretype-en.png",
+          "fr": "assets/nretype-fr.png",
+          "es": "assets/nretype-es.png",
+          "ru": "assets/nretype-ru.png",
+          "ar": "assets/nretype-ar.png",
+          "pt": "assets/nretype-pt.png",
+          "it": "assets/nretype-it.png",
+          "tr": "assets/nretype-tr.png",
+          "de": "assets/nretype-de.png",
+          "nl": "assets/nretype-nl.png",
+          "default": "assets/nretype-en.png"
+        },
+        "fhexqr": {
+          "en": "assets/fhexqr-en.png",
+          "fr": "assets/fhexqr-fr.png",
+          "es": "assets/fhexqr-es.png",
+          "ru": "assets/fhexqr-ru.png",
+          "ar": "assets/fhexqr-ar.png",
+          "pt": "assets/fhexqr-pt.png",
+          "it": "assets/fhexqr-it.png",
+          "tr": "assets/fhexqr-tr.png",
+          "de": "assets/fhexqr-de.png",
+          "nl": "assets/fhexqr-nl.png",
+          "default": "assets/fhexqr-en.png"
+        }
+      };
+
+      const userLanguage = detectUserLanguage();
+      document.querySelectorAll("a-plane").forEach((plane) => {
+        const imageId = plane.getAttribute("id");
+        const source = imageSources[imageId][userLanguage] || imageSources[imageId]["default"];
+        plane.setAttribute("src", source);
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene mindar-image="imageTargetSrc: assets/packages.mind; maxTrack: 6" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-assets>
+        <img id="nptype" src="" />
+        <img id="nsetype" src="" />
+        <img id="ndnvtype" src="" />
+        <img id="netype" src="" />
+        <img id="nretype" src="" />
+        <img id="fhexqr" src="" />
+      </a-assets>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-plane id="nptype" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-plane id="nsetype" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-plane id="ndnvtype" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-plane id="netype" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 4">
+        <a-plane id="nretype" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-plane>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 5">
+        <a-plane id="fhexqr" position="0 0 0" height="1.35" width="2.25" rotation="0 0 0"></a-plane>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
